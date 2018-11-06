@@ -6,7 +6,7 @@ import time
 #or as a single tuple (2,2)
 def wiggleClick(x=None,y=None):
     '''Move mouse cursor to target screen coordinate x,y,
-    but wiggle a little bit on the way.'''
+    but wiggle cursor a little bit on the way.'''
     
     #If user passed in a tuple
     if isinstance(x, tuple):
