@@ -4,7 +4,7 @@ import time
 
 #Has support for arguments passed in as x=1,y=1
 #or as a single tuple (2,2)
-def wiggleClick(x=None,y=None, time=None):
+def wiggleClick(x=None,y=None, interval=None):
     '''Move mouse cursor to target screen coordinate x,y,
     but wiggle cursor a little bit on the way.'''
     
@@ -31,21 +31,25 @@ def wiggleClick(x=None,y=None, time=None):
     #move to 1-2 intermediate points within bounding box
     #numIters = random.randint(1,2)
     numIters=1
-    if time == None:
-        timeInterval = 0.1
+    if interval == None:
+        interval = 0
     else:
-        timeInterval = time/numIters
+        interval = interval/numIters
     
     for i in range(numIters):
         midpointX = random.randint(leftBound,rightBound)
         midpointY = random.randint(topBound,bottomBound)
-        pyautogui.moveTo(midpointX,midpointY,timeInterval*i) 
+        pyautogui.moveTo(midpointX,midpointY,interval) 
 
     pyautogui.click(x,y)
 
 def safeLocateOnScreen(filename, region=None):
     '''Look for something on screen repeatedly until it's found,
     instead of returning None after one try.
+    
+    [DEPRECATED] This function exists already in pyautogui,
+    just use pyautogui.locateOnScreen(image, region, minSearchTime = x)
+    
     '''
     coords = None
     while coords == None:
